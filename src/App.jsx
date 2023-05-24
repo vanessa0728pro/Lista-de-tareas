@@ -6,12 +6,12 @@ import Contador from "./components/Contador";
 
 function App() {
   const list = [
-    { list: "diapers change" },
-    { list: "give probioticos" },
-    { list: "give milk" },
-    { list: "get some exercise" },
-    { list: "sleep" },
-    { list: "Bath" },
+    { list: "Cambio de panales" },
+    { list: "Dar probioticos" },
+    { list: "Dar comida" },
+    { list: "Hacer ejercicios" },
+    { list: "Dormir" },
+    { list: "Banar" },
   ];
   return (
     <div className="App">
