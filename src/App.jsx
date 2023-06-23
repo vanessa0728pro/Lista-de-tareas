@@ -1,27 +1,46 @@
+import { useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
-import TaskList from "./components/TaskList";
-import Clear from "./components/Clear";
-import Contador from "./components/Contador";
+import { TodoAdd } from "./components/TodoAdd";
+import { TodoList } from "./components/TodoList";
+import { useTodo } from "./hooks/useTodo";
 
 function App() {
-  const list = [
-    { list: "Cambio de panales" },
-    { list: "Dar probioticos" },
-    { list: "Dar comida" },
-    { list: "Hacer ejercicios" },
-    { list: "Dormir" },
-    { list: "Banar" },
-  ];
+  const {
+    todos,
+    todosCount,
+    pendingTodosCount,
+    handleNewTodo,
+    handleDeleteTodo,
+    handleCompleteTodo,
+    handleUpdateTodo,
+  } = useTodo();
+
   return (
-    <div className="App">
-      <Header />
-      {list.map((tareas) => (
-        <TaskList list={tareas.list} />
-      ))}
-      <Clear />
-      <Contador />
-    </div>
+    <>
+      <div className="card-to-do">
+        <h1>Lista de tareas</h1>
+        <div className="counter-todos">
+          <h3>
+            N° Tareas: <span>{todosCount}</span>
+          </h3>
+          <h3>
+            Pendientes: <span>{pendingTodosCount}</span>
+          </h3>
+        </div>
+
+        <div className="add-todo">
+          <h3>Agregar Tarea</h3>
+          <TodoAdd handleNewTodo={handleNewTodo} />
+        </div>
+
+        <TodoList
+          todos={todos}
+          handleUpdateTodo={handleUpdateTodo}
+          handleDeleteTodo={handleDeleteTodo}
+          handleCompleteTodo={handleCompleteTodo}
+        />
+      </div>
+    </>
   );
 }
 
