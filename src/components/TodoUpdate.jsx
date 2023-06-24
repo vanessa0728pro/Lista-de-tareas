@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { FaEdit } from "react-icons/fa";
-import { useForm } from "../hooks/useForm";
+import { useForm } from "../Hooks/useForm";
 
 export const TodoUpdate = ({ todo, handleUpdateTodo }) => {
-  const { updateDescription, onInputChange } = useForm({
-    updateDescription: todo.description,
+  const { values, handleChange } = useForm({
+    name: todo.name,
+    description: todo.description,
   });
 
   const [disabled, setDisabled] = useState(true);
@@ -14,9 +15,9 @@ export const TodoUpdate = ({ todo, handleUpdateTodo }) => {
     e.preventDefault();
 
     const id = todo.id;
-    const description = updateDescription;
+    const { name, description } = values;
 
-    handleUpdateTodo(id, description);
+    handleUpdateTodo(id, name, description);
 
     setDisabled(!disabled);
 
@@ -28,12 +29,21 @@ export const TodoUpdate = ({ todo, handleUpdateTodo }) => {
       <input
         type="text"
         className={`input-update ${todo.done ? "text-decoration-dashed" : ""}`}
-        name="updateDescription"
-        value={updateDescription}
-        onChange={onInputChange}
-        placeholder="¿Qué hay que hacer?"
+        name="name"
+        value={values.name}
+        onChange={handleChange}
+        placeholder="Nombre de la tarea"
         readOnly={disabled}
         ref={focusInputRef}
+      />
+      <input
+        type="text"
+        className={`input-update ${todo.done ? "text-decoration-dashed" : ""}`}
+        name="description"
+        value={values.description}
+        onChange={handleChange}
+        placeholder="Descripción de la tarea"
+        readOnly={disabled}
       />
 
       <button className="btn-edit" type="submit">
