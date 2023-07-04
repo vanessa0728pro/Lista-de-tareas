@@ -1,30 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "../Hooks/useForm";
 
 export const TodoAdd = ({ handleNewTodo }) => {
-  const [error, setError] = useState("");
-
   const { values, handleChange, resetForm } = useForm({
     name: "",
+    description: "",
   });
 
   const onFormSubmit = (e) => {
     e.preventDefault();
 
-    if (values.name.trim().length < 3) {
-      setError("El nombre debe tener al menos 3 caracteres");
+    if (values.name.length < 3) {
+      alert("El nombre de la tarea debe tener al menos 3 caracteres");
       return;
     }
 
     const newTodo = {
       id: new Date().getTime(),
-      name: values.name.trim(),
+      name: values.name,
+      description: values.description,
       done: false,
     };
 
     handleNewTodo(newTodo);
     resetForm();
-    setError("");
   };
 
   return (
@@ -35,10 +34,17 @@ export const TodoAdd = ({ handleNewTodo }) => {
         name="name"
         value={values.name}
         onChange={handleChange}
-        placeholder="¿Qué hay que hacer?"
+        placeholder="Titulo de la tarea"
       />
 
-      {error && <p className="error-message">{error}</p>}
+      <input
+        type="text"
+        className="input-add"
+        name="description"
+        value={values.description}
+        onChange={handleChange}
+        placeholder="Descripción (opcional)"
+      />
 
       <button className="btn-add" type="submit">
         Agregar

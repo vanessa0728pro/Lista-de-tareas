@@ -4,9 +4,11 @@ import { useForm } from "../Hooks/useForm";
 
 export const TodoUpdate = ({ todo, handleUpdateTodo }) => {
   const { values, handleChange } = useForm({
-    name: todo.name,
-    description: todo.description,
+    updateName: todo.name,
+    updateDescription: todo.description,
   });
+
+  const { updateName, updateDescription } = values;
 
   const [disabled, setDisabled] = useState(true);
   const focusInputRef = useRef();
@@ -15,7 +17,8 @@ export const TodoUpdate = ({ todo, handleUpdateTodo }) => {
     e.preventDefault();
 
     const id = todo.id;
-    const { name, description } = values;
+    const name = updateName;
+    const description = updateDescription;
 
     handleUpdateTodo(id, name, description);
 
@@ -29,20 +32,21 @@ export const TodoUpdate = ({ todo, handleUpdateTodo }) => {
       <input
         type="text"
         className={`input-update ${todo.done ? "text-decoration-dashed" : ""}`}
-        name="name"
-        value={values.name}
+        name="updateName"
+        value={updateName}
         onChange={handleChange}
         placeholder="Nombre de la tarea"
         readOnly={disabled}
         ref={focusInputRef}
       />
+
       <input
         type="text"
         className={`input-update ${todo.done ? "text-decoration-dashed" : ""}`}
-        name="description"
-        value={values.description}
+        name="updateDescription"
+        value={updateDescription}
         onChange={handleChange}
-        placeholder="Descripción de la tarea"
+        placeholder="Descripción de la tarea (opcional)"
         readOnly={disabled}
       />
 

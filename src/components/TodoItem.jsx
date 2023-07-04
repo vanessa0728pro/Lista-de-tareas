@@ -8,10 +8,6 @@ export const TodoItem = ({
   handleDeleteTodo,
   handleCompleteTodo,
 }) => {
-  const handleTodoUpdate = (id, name, description) => {
-    handleUpdateTodo(id, name, description);
-  };
-
   return (
     <li>
       <span onClick={() => handleCompleteTodo(todo.id)}>
@@ -19,7 +15,7 @@ export const TodoItem = ({
           className={`container-done ${todo.done ? "active" : ""}`}
         ></label>
       </span>
-      <TodoUpdate todo={todo} handleUpdateTodo={handleTodoUpdate} />
+      <TodoUpdate todo={todo} handleUpdateTodo={handleUpdateTodo} />
       <button className="btn-delete" onClick={() => handleDeleteTodo(todo.id)}>
         <FaTrash />
       </button>

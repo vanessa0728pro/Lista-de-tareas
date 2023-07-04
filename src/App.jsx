@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { TodoAdd } from "./Components/TodoAdd";
 import { TodoList } from "./Components/TodoList";
-import { useTodo } from "./Hooks/useTodo";
+import { useTodo } from "./hooks/useTodo";
 
 function App() {
   const {
