@@ -24,7 +24,7 @@
   width: 87%;
   flex: 1;
   color: rgb(255, 255, 255);
-  border: 1.5px solid rgb(3, 226, 255);
+  border: 1.5px solid rgb(72, 216, 241);
   max-width: 736px;
   border-radius: 8px;
   padding: 0 16px;
@@ -70,7 +70,7 @@
 .error {
   position: absolute;
   bottom: -50px;
-  color: yellow;
+  color: rgb(250, 9, 1);
   font-size: 14px;
   background: none;
   text-transform: uppercase;
